@@ -1,0 +1,22 @@
+# Sensitive HAR network captures (session tokens, auth headers, private cookies)
+*.har
+
+# Automation & test verification screenshots
+*_verified.png
+test_*.png
+ending_section_fixed.png
+fullpage_mobile.png
+sec_*.png
+autoplay_slide_*.png
+bottom_crop.png
+verification_shots/
+
+# Scratch reverse-engineering and verification scripts
+*.py
+
+# Operating system & editor metadata
+Thumbs.db
+Desktop.ini
+.DS_Store
+.idea/
+.vscode/
