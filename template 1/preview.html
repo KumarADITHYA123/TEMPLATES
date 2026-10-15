@@ -64,18 +64,27 @@
 
     /* Intro Wax Seal / Envelope Splash */
     .intro {
-      position: fixed; inset: 0; z-index: 300; background: #0A0101;
+      position: fixed; inset: 0; z-index: 300; background: #e2ccaf;
       display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;
+      opacity: 1; transition: opacity 0.8s ease;
     }
-    .intro__video, .intro__poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .intro__poster { z-index: 2; filter: brightness(0.85) contrast(1.05); transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.2s ease; }
+    .intro.intro--done { opacity: 0; pointer-events: none; }
+    .intro__video, .intro__poster {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: contain; object-position: center;
+    }
+    .intro__video { z-index: 1; background: #e2ccaf; }
+    .intro__poster {
+      z-index: 2; transition: opacity 0.4s ease;
+    }
+    .intro.is-playing .intro__poster { opacity: 0; pointer-events: none; }
     .intro__seal {
       position: absolute; left: 50%; top: 49%; transform: translate(-50%, -50%);
       z-index: 5; width: min(140px, 34vw); height: min(140px, 34vw); border-radius: 50%;
       background: transparent; border: none; box-shadow: none;
       cursor: pointer; display: flex; align-items: center; justify-content: center;
       outline: none; -webkit-tap-highlight-color: transparent;
-      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
     }
     .intro__seal:hover { transform: translate(-50%, -50%) scale(1.06); }
     .intro__seal-ring {
@@ -90,11 +99,21 @@
       60% { transform: scale(1.16); opacity: 0; }
       100% { transform: scale(1.16); opacity: 0; }
     }
+    .intro.is-playing .intro__seal { opacity: 0; visibility: hidden; pointer-events: none; }
     .intro__play { display: none !important; }
     .intro__skip {
-      position: absolute; bottom: 2rem; right: 2rem; z-index: 10; background: rgba(0,0,0,0.8);
-      color: var(--gold-light); border: 1px solid var(--gold-primary); padding: 8px 18px;
-      border-radius: 999px; font-family: var(--font-sans); font-size: 0.75rem; text-transform: uppercase; cursor: pointer;
+      position: absolute; bottom: 2rem; right: 2rem; z-index: 10;
+      background: rgba(42, 6, 6, 0.85);
+      color: var(--gold-light); border: 1.5px solid var(--gold-primary);
+      padding: 8px 20px; border-radius: 999px; font-family: var(--font-sans);
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.16em; cursor: pointer; backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      transition: transform 0.25s, background 0.25s;
+    }
+    .intro__skip:hover {
+      background: var(--maroon-royal);
+      transform: scale(1.05);
     }
 
     /* Main Scroll Panels */
@@ -554,36 +573,39 @@
       display: block; width: 100%; height: auto; min-height: 0; object-fit: contain;
     }
     .panel--count .panel__inner {
-      position: absolute; top: 16%; left: 0; right: 0; margin-inline: auto;
-      width: min(20rem, 85%);
+      position: absolute; top: 30%; left: 0; right: 0; margin-inline: auto;
+      width: min(16.5rem, 62%);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; z-index: 4;
     }
     .panel--count .script {
       font-family: var(--font-script);
-      font-size: clamp(1.4rem, 4.4vw, 2rem);
-      margin-bottom: 0.35rem; line-height: 1.1;
-      color: var(--maroon-royal);
+      font-size: clamp(1.25rem, 3.8vw, 1.7rem);
+      margin-bottom: 0.3rem; line-height: 1.1;
+      color: #380808;
       text-shadow: 0 1px 2px rgba(255,255,255,0.8), 0 0 1px rgba(212,175,55,0.5);
     }
     .count {
       list-style: none; display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 0.4rem; margin: 0 auto; padding: 0.5rem 0.85rem; border-radius: 14px;
+      gap: 0.35rem; margin: 0 auto; padding: 0.45rem 0.65rem; border-radius: 12px;
       background: linear-gradient(165deg, rgba(45, 6, 6, 0.94) 0%, rgba(20, 2, 2, 0.98) 100%);
       border: 1.5px solid rgba(212, 175, 55, 0.75);
       backdrop-filter: blur(10px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.45), 0 0 15px rgba(212,175,55,0.25);
-      max-width: 310px; width: 100%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.45), 0 0 15px rgba(212,175,55,0.25);
+      max-width: 275px; width: 100%;
     }
     .count li { display: flex; flex-direction: column; align-items: center; min-width: 0; }
     .count b {
-      font-family: var(--font-display); font-size: clamp(1.2rem, 3.8vw, 1.6rem);
+      font-family: 'Cinzel', serif;
+      font-variant-numeric: tabular-nums;
+      font-size: clamp(1.15rem, 3.5vw, 1.5rem);
+      font-weight: 700;
       line-height: 1.1; color: var(--gold-light);
       text-shadow: 0 1px 6px rgba(0,0,0,0.8);
     }
     .count span {
-      font-family: var(--font-sans); font-size: 0.6rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold-primary); margin-top: 1px;
+      font-family: var(--font-sans); font-size: 0.55rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold-primary); margin-top: 1px;
     }
 
     /* Footer / Last Panel (Ivory floral carved relief) */
@@ -949,28 +971,98 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // Intro unlock
+    // Intro & Music Coordination
     const intro = document.getElementById('intro');
     const introVideo = document.getElementById('introVideo');
     const introPoster = document.getElementById('introPoster');
     const introSeal = document.getElementById('introSeal');
+    const introSkip = document.getElementById('introSkip');
     const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
 
-    let unlocked = false;
-    function unlock() {
-      if (unlocked) return;
-      unlocked = true;
-      if (bgMusic) bgMusic.play().catch(() => {});
-      if (introVideo) introVideo.play().catch(() => {});
-      if (introSeal) gsap.to(introSeal, { scale: 0, opacity: 0, duration: 0.4 });
-      if (introPoster) gsap.to(introPoster, { opacity: 0, duration: 0.8 });
-      setTimeout(() => {
-        if (intro) gsap.to(intro, { yPercent: -100, opacity: 0, duration: 1.1, ease: 'power2.inOut', onComplete: () => intro.remove() });
-      }, 700);
+    let dismissed = false;
+    function dismissIntro() {
+      if (dismissed) return;
+      dismissed = true;
+      try { if (introVideo) introVideo.pause(); } catch (_) {}
+      if (intro) {
+        gsap.to(intro, {
+          opacity: 0,
+          scale: 1.03,
+          duration: 0.85,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            intro.style.display = 'none';
+            intro.remove();
+          }
+        });
+      }
     }
 
-    if (introSeal) introSeal.addEventListener('click', unlock);
-    if (introPoster) introPoster.addEventListener('click', unlock);
+    let started = false;
+    function startIntro(e) {
+      if (e && e.stopPropagation) e.stopPropagation();
+      if (started || dismissed) return;
+      started = true;
+      if (intro) intro.classList.add('is-playing');
+      if (introSkip) introSkip.hidden = false;
+
+      // Start background wedding music
+      if (bgMusic) {
+        bgMusic.play().then(() => {
+          if (musicToggle) musicToggle.classList.add('is-playing');
+        }).catch(() => {
+          if (musicToggle) musicToggle.classList.remove('is-playing');
+        });
+      }
+
+      // Play envelope film in HD
+      if (introVideo) {
+        introVideo.muted = true;
+        const playPromise = introVideo.play();
+        if (playPromise && playPromise.catch) {
+          playPromise.catch(() => {
+            dismissIntro();
+          });
+        }
+      } else {
+        dismissIntro();
+      }
+
+      setTimeout(() => {
+        if (started && !dismissed) {
+          if (introPoster) introPoster.style.display = 'none';
+          if (introSeal) introSeal.style.display = 'none';
+        }
+      }, 450);
+    }
+
+    if (introSeal) {
+      introSeal.addEventListener('click', startIntro);
+      introSeal.addEventListener('touchend', (e) => { e.preventDefault(); startIntro(e); });
+    }
+    if (intro) {
+      intro.addEventListener('click', (e) => {
+        if (started || dismissed) return;
+        if (e.target === introSkip) return;
+        startIntro(e);
+      });
+    }
+    if (introVideo) {
+      introVideo.addEventListener('ended', dismissIntro);
+      introVideo.addEventListener('error', dismissIntro);
+      introVideo.addEventListener('timeupdate', () => {
+        if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.12) {
+          dismissIntro();
+        }
+      });
+    }
+    if (introSkip) {
+      introSkip.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dismissIntro();
+      });
+    }
 
     // Firecrackers Particle System (Dual emitters flanking date card)
     function firecrackers(originEl) {
@@ -1405,8 +1497,12 @@
       update();
     })();
 
-    // Countdown
-    const target = new Date("2026-08-23T05:45:00+05:30").getTime();
+    // Countdown Target Date (Calculates upcoming August 23rd wedding date dynamically)
+    let weddingDate = new Date(new Date().getFullYear(), 7, 23, 5, 45, 0);
+    if (weddingDate.getTime() <= Date.now()) {
+      weddingDate = new Date(new Date().getFullYear() + 1, 7, 23, 5, 45, 0);
+    }
+    const target = weddingDate.getTime();
     function updateCountdown() {
       const d = Math.max(0, target - Date.now());
       const days = document.querySelector('[data-unit="days"]');
@@ -1422,11 +1518,15 @@
     setInterval(updateCountdown, 1000);
 
     // Music Toggle
-    const musicToggle = document.getElementById('musicToggle');
     if (musicToggle && bgMusic) {
       musicToggle.onclick = () => {
-        if (bgMusic.paused) { bgMusic.play(); musicToggle.classList.add('is-playing'); }
-        else { bgMusic.pause(); musicToggle.classList.remove('is-playing'); }
+        if (bgMusic.paused) {
+          bgMusic.play();
+          musicToggle.classList.add('is-playing');
+        } else {
+          bgMusic.pause();
+          musicToggle.classList.remove('is-playing');
+        }
       };
     }
   </script>
