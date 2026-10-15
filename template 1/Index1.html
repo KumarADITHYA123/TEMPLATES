@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#140202" />
-  <title>Venkata Chandra Sekhar &amp; Varsha — Royal South Indian Wedding</title>
+  <meta name="theme-color" content="#FBF6EC" />
+  <title>Venkata Chandra Sekhar &amp; Varsha — 23 August 2026</title>
+  <meta name="description" content="With the blessings of our families, we invite you to celebrate our wedding." />
 
-  <!-- Elite Google Fonts -->
+  <link rel="stylesheet" href="../assets/fonts.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Noto+Serif+Telugu:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-deep: #120101;
-      --kumkuma: #2A0404;
-      --gold-primary: #D4AF37;
-      --gold-light: #FCF6BA;
-      --gold-dark: #996515;
-      --cream: #FBF6EC;
+      --cream-ivory: #FBF6EC;
+      --kumkuma-deep: #1E0303;
+      --maroon-royal: #3A0707;
+      --gold-metallic: #D4AF37;
+      --gold-bright: #FDF0A6;
+      --ink-dark: #2C1208;
       --font-display: 'Cinzel Decorative', 'Noto Serif Telugu', serif;
       --font-serif: 'Cormorant Garamond', 'Noto Serif Telugu', serif;
       --font-script: 'Pinyon Script', cursive;
@@ -28,255 +29,248 @@
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     html, body {
-      background-color: var(--bg-deep);
-      color: var(--cream);
+      background-color: var(--cream-ivory);
+      color: var(--ink-dark);
       font-family: var(--font-serif);
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
 
-    /* 3D WebGL Golden Particle Canvas */
-    #webgl-canvas {
-      position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 40;
+    #webgl-blessings {
+      position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 45;
     }
 
-    /* Language Switcher */
     .lang-pill {
-      position: fixed; top: 1.25rem; right: 1.25rem; z-index: 100;
-      display: flex; gap: 4px; padding: 5px; border-radius: 999px;
-      background: rgba(18, 2, 2, 0.85); backdrop-filter: blur(14px);
-      border: 1px solid rgba(212, 175, 55, 0.5);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 15px rgba(212, 175, 55, 0.2);
+      position: fixed; top: 1.15rem; right: 1.15rem; z-index: 95; display: flex; gap: 4px; padding: 5px;
+      border-radius: 999px; background: rgba(251, 246, 236, 0.9); backdrop-filter: blur(14px);
+      border: 1px solid rgba(180, 136, 40, 0.45); box-shadow: 0 8px 25px rgba(44, 18, 8, 0.18);
     }
     .lang-pill__btn {
-      background: transparent; border: none; color: var(--cream);
-      font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.1em; padding: 6px 12px; border-radius: 999px; cursor: pointer; transition: 0.3s;
+      background: transparent; border: none; color: var(--ink-dark); font-family: var(--font-sans);
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; padding: 6px 12px; border-radius: 999px; cursor: pointer; transition: 0.3s;
     }
     .lang-pill__btn.is-active {
-      background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728);
-      color: #120101; font-weight: 700; box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+      background: linear-gradient(135deg, #996515, #D4AF37, #8A6216); color: #fff; box-shadow: 0 2px 10px rgba(153, 101, 21, 0.4);
     }
 
-    /* Intro Wax Seal / Envelope Splash */
     .intro {
-      position: fixed; inset: 0; z-index: 300; background: #0A0101;
+      position: fixed; inset: 0; z-index: 200; background: var(--cream-ivory);
       display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;
     }
     .intro__video, .intro__poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .intro__poster { z-index: 2; filter: brightness(0.75) contrast(1.1); transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.2s ease; }
+    .intro__poster { z-index: 2; transition: transform 1.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.1s ease; }
     .intro__seal {
-      position: relative; z-index: 5; width: 130px; height: 130px; border-radius: 50%;
-      border: 2px solid var(--gold-light);
-      background: radial-gradient(circle at 30% 30%, #f3d27a, #996515 65%, #3a1902 100%);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 45px rgba(212, 175, 55, 0.7), inset 0 0 20px rgba(255,255,255,0.4);
+      position: relative; z-index: 5; width: 120px; height: 120px; border-radius: 50%;
+      border: 2px solid rgba(252, 246, 186, 0.8);
+      background: radial-gradient(circle at 30% 30%, #f3d27a, #b38728 65%, #5e3c06 100%);
+      box-shadow: 0 15px 40px rgba(44, 18, 8, 0.45), 0 0 35px rgba(212, 175, 55, 0.6);
       cursor: pointer; display: flex; align-items: center; justify-content: center;
       transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .intro__seal::after {
-      content: "V & V"; font-family: var(--font-display); font-size: 1.35rem; font-weight: 900; color: #2A0404; letter-spacing: 0.08em;
-    }
-    .intro__seal:hover { transform: scale(1.08) rotate(4deg); }
+    .intro__seal:hover { transform: scale(1.08) rotate(5deg); }
     .intro__seal-ring {
-      position: absolute; inset: -12px; border-radius: 50%; border: 1px dashed rgba(252,246,186,0.8);
-      animation: spinSlow 20s linear infinite;
+      position: absolute; inset: -12px; border-radius: 50%;
+      border: 1.5px dashed rgba(180, 136, 40, 0.85); animation: spinSlow 18s linear infinite;
     }
     .intro__play {
-      position: relative; z-index: 5; margin-top: 1.5rem; background: rgba(26, 4, 4, 0.82);
+      position: relative; z-index: 5; margin-top: 1.5rem; background: rgba(44, 18, 8, 0.82);
       border: 1px solid rgba(212, 175, 55, 0.6); padding: 10px 26px; border-radius: 999px;
-      color: var(--gold-light); font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase;
-      letter-spacing: 0.28em; cursor: pointer; backdrop-filter: blur(8px);
+      color: var(--gold-bright); font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase;
+      letter-spacing: 0.25em; cursor: pointer; backdrop-filter: blur(8px);
     }
     .intro__skip {
-      position: absolute; bottom: 2rem; right: 2rem; z-index: 10; background: rgba(0,0,0,0.7);
-      color: var(--gold-light); border: 1px solid var(--gold-primary); padding: 8px 18px;
-      border-radius: 999px; font-family: var(--font-sans); font-size: 0.75rem; text-transform: uppercase; cursor: pointer;
+      position: absolute; bottom: 2rem; right: 2rem; z-index: 10; background: rgba(44, 18, 8, 0.75);
+      color: var(--gold-bright); border: 1px solid var(--gold-metallic); padding: 8px 18px;
+      border-radius: 999px; font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer;
     }
 
-    /* Main Scroll Panels (Subfolder Corrected: ../assets/) */
     .hero, .section, .celebrate, .meet, .panel {
-      position: relative; width: 100%; max-width: 660px; margin: 0 auto; overflow: hidden;
-      box-shadow: 0 0 100px rgba(0,0,0,0.95); background-color: var(--bg-deep);
+      position: relative; width: 100%; max-width: 640px; margin: 0 auto; overflow: hidden;
+      background-color: var(--cream-ivory); box-shadow: 0 0 70px rgba(44, 18, 8, 0.25);
     }
     .hero__img, .families__img, .celebrate__img, .meet__img, .panel__img {
-      display: block; width: 100%; height: auto; min-height: 100vh; object-fit: cover;
+      display: block; width: 100%; height: auto; pointer-events: none; user-select: none;
     }
 
-    /* Gold Gradient Text */
     .h2, .hero__name {
-      font-family: var(--font-display);
-      background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 28%, #D4AF37 50%, #FBF5B7 75%, #996515 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% auto;
-      animation: goldShine 7s linear infinite; filter: drop-shadow(0 4px 15px rgba(0,0,0,0.8));
+      font-family: var(--font-display); color: #4A1208; text-shadow: 0 2px 12px rgba(251, 246, 236, 0.9);
     }
     .script {
-      font-family: var(--font-script); font-size: clamp(2.1rem, 5.5vw, 2.9rem); color: var(--gold-light);
-      text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+      font-family: var(--font-script); font-size: clamp(1.9rem, 5vw, 2.6rem); color: #8A5A10; line-height: 1.1; margin-bottom: 0.2rem;
     }
 
-    /* Hero Section */
     .hero__veil {
-      position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, rgba(18,2,2,0.3) 0%, rgba(18,2,2,0.85) 100%); z-index: 1;
+      position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, rgba(251, 246, 236, 0.15) 0%, rgba(251, 246, 236, 0.45) 100%);
+      z-index: 1; pointer-events: none;
     }
     .hero__inner {
       position: absolute; inset: 0; z-index: 5; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; text-align: center; padding: 2.5rem 1.5rem;
+      align-items: center; justify-content: center; text-align: center; padding: 2rem 1.75rem;
     }
-    .hero__blessing { font-size: 1.4rem; color: var(--gold-light); letter-spacing: 0.2em; margin-bottom: 0.75rem; text-shadow: 0 0 20px rgba(212,175,55,0.8); }
-    .hero__eyebrow { font-family: var(--font-sans); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.32em; color: rgba(251,246,236,0.85); margin-bottom: 1.5rem; }
-    .hero__names { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; margin: 0.5rem 0 1.25rem; }
-    .hero__name { font-size: clamp(2.2rem, 6.5vw, 3.7rem); line-height: 1.12; }
-    .hero__amp { font-family: var(--font-script); font-size: clamp(2.5rem, 6vw, 3.6rem); color: var(--gold-primary); }
-    .hero__tagline { font-size: 1.25rem; font-style: italic; letter-spacing: 0.12em; color: var(--cream); }
-    .hero__rule, .rule-orn { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 1.25rem auto; width: 180px; color: var(--gold-primary); }
-    .hero__rule span, .rule-orn span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-primary), transparent); }
+    .hero__blessing { font-size: 1.25rem; color: #7A1C12; font-weight: 700; letter-spacing: 0.15em; margin-bottom: 0.6rem; }
+    .hero__eyebrow { font-family: var(--font-sans); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.28em; color: #5C3A21; margin-bottom: 1.1rem; }
+    .hero__names { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; margin: 0.25rem 0 1rem; }
+    .hero__name {
+      font-size: clamp(1.85rem, 6vw, 3rem); line-height: 1.15;
+      background: linear-gradient(135deg, #5A1208 0%, #996515 50%, #3E0A04 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero__amp { font-family: var(--font-script); font-size: clamp(2.1rem, 5.5vw, 3rem); color: #996515; }
+    .hero__tagline { font-size: 1.15rem; font-style: italic; letter-spacing: 0.1em; color: #4A2511; }
+    .hero__rule, .rule-orn {
+      display: flex; align-items: center; justify-content: center; gap: 12px; margin: 1rem auto; width: 160px; color: #996515;
+    }
+    .hero__rule span, .rule-orn span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #996515, transparent); }
 
-    /* Scratch Foil Date */
     .scratch {
-      position: relative; width: 245px; height: 86px; border-radius: 12px; overflow: hidden;
-      border: 1px solid rgba(212,175,55,0.7); box-shadow: 0 12px 35px rgba(0,0,0,0.7), 0 0 25px rgba(212,175,55,0.3);
-      background: rgba(34,4,4,0.92); display: flex; align-items: center; justify-content: center; margin-top: 0.5rem;
+      position: relative; width: 225px; height: 80px; border-radius: 12px; overflow: hidden;
+      border: 1.5px solid #D4AF37; box-shadow: 0 10px 30px rgba(44, 18, 8, 0.22), 0 0 20px rgba(212, 175, 55, 0.35);
+      background: rgba(251, 246, 236, 0.94); display: flex; align-items: center; justify-content: center; margin-top: 0.35rem;
     }
-    .scratch__content { display: flex; flex-direction: column; align-items: center; color: var(--gold-light); }
-    .scratch__content span { font-family: var(--font-sans); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.28em; opacity: 0.85; }
-    .scratch__content strong { font-family: var(--font-display); font-size: 1.45rem; letter-spacing: 0.12em; margin-top: 2px; }
+    .scratch__content { display: flex; flex-direction: column; align-items: center; color: #4A1208; }
+    .scratch__content span { font-family: var(--font-sans); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.25em; color: #8A5A10; }
+    .scratch__content strong { font-family: var(--font-display); font-size: 1.35rem; letter-spacing: 0.1em; margin-top: 2px; }
     #scratchCanvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; z-index: 3; }
-    .hero__scroll { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); z-index: 6; }
-    .hero__scroll-line { display: block; width: 1px; height: 48px; background: linear-gradient(to bottom, var(--gold-light), transparent); animation: scrollPulse 2s infinite; }
+    .hero__scroll { position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 6; }
+    .hero__scroll-line {
+      display: block; width: 1.5px; height: 44px; background: linear-gradient(to bottom, #8A5A10, transparent); animation: scrollPulse 2s infinite;
+    }
 
-    /* Families Section */
     .families__inner {
       position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; text-align: center; padding: 3rem 2rem;
-      background: radial-gradient(circle at center, rgba(18,2,2,0.75) 0%, rgba(10,1,1,0.5) 100%);
+      align-items: center; justify-content: center; text-align: center; padding: 2.5rem 2rem;
     }
-    .h2 { font-size: clamp(2rem, 5.5vw, 3.1rem); line-height: 1.18; margin-bottom: 1.5rem; }
+    .h2 { font-size: clamp(1.75rem, 5vw, 2.5rem); line-height: 1.18; margin-bottom: 1rem; }
     .house {
-      list-style: none; display: flex; flex-direction: column; gap: 1.5rem; margin: 1.5rem 0; padding: 2rem 1.75rem;
-      background: rgba(30, 4, 4, 0.85); backdrop-filter: blur(14px); border: 1px solid rgba(212,175,55,0.45);
-      border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); max-width: 460px; width: 100%;
+      list-style: none; display: flex; flex-direction: column; gap: 1.15rem; margin: 1rem 0;
+      padding: 1.65rem 1.4rem; background: rgba(251, 246, 236, 0.88); backdrop-filter: blur(12px);
+      border: 1px solid rgba(180, 136, 40, 0.45); border-radius: 16px; box-shadow: 0 15px 40px rgba(44, 18, 8, 0.15);
+      max-width: 420px; width: 100%;
     }
-    .house__name { font-family: var(--font-display); font-size: 1.45rem; color: var(--gold-light); margin-bottom: 0.35rem; }
-    .house__of { font-size: 1.05rem; color: rgba(251,246,236,0.9); line-height: 1.4; }
-    .house__knot { color: var(--gold-primary); font-size: 1.4rem; }
-    .families__blessing { font-style: italic; font-size: 1.2rem; color: var(--gold-light); margin-top: 1rem; }
+    .house__name { font-family: var(--font-display); font-size: 1.3rem; color: #5A1208; margin-bottom: 0.25rem; }
+    .house__of { font-size: 1rem; color: #4A2511; line-height: 1.4; }
+    .house__knot { color: #996515; font-size: 1.25rem; }
+    .families__blessing { font-style: italic; font-size: 1.1rem; color: #6E3B16; margin-top: 0.75rem; }
 
-    /* Celebrations Carousel */
     .celebrate__inner {
-      position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; justify-content: center; padding: 2.5rem 1.25rem;
-      background: linear-gradient(to bottom, rgba(18,2,2,0.65), rgba(18,2,2,0.4), rgba(18,2,2,0.8));
+      position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; justify-content: center; padding: 2rem 1rem;
     }
-    .celebrate__head { text-align: center; margin-bottom: 1.25rem; }
+    .celebrate__head {
+      text-align: center; margin-bottom: 0.85rem; background: rgba(251, 246, 236, 0.88); backdrop-filter: blur(8px);
+      padding: 0.75rem 1.75rem; border-radius: 999px; border: 1px solid rgba(180, 136, 40, 0.4);
+      align-self: center; box-shadow: 0 8px 25px rgba(44, 18, 8, 0.12);
+    }
+    .celebrate__head .h2 { margin-bottom: 0; }
     .carousel { position: relative; width: 100%; }
     .carousel__track {
-      list-style: none; display: flex; gap: 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory;
-      scrollbar-width: none; padding: 1rem 0.5rem 1.5rem;
+      list-style: none; display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory;
+      scrollbar-width: none; padding: 0.75rem 1rem 1.25rem;
     }
     .carousel__track::-webkit-scrollbar { display: none; }
-    .slide { flex: 0 0 88%; scroll-snap-align: center; perspective: 1000px; }
+    .slide { flex: 0 0 86%; scroll-snap-align: center; perspective: 1000px; }
 
     .ecard {
-      position: relative; background: linear-gradient(155deg, rgba(42, 4, 4, 0.94) 0%, rgba(18, 2, 2, 0.98) 100%);
-      border: 1px solid rgba(212,175,55,0.55); border-radius: 20px; padding: 1.4rem; text-align: center;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.8), inset 0 0 25px rgba(212,175,55,0.15);
-      transform-style: preserve-3d; transition: transform 0.25s ease-out;
+      position: relative; background: rgba(251, 246, 236, 0.94); backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(180, 136, 40, 0.55); border-radius: 20px; padding: 1.25rem; text-align: center;
+      box-shadow: 0 20px 45px rgba(44, 18, 8, 0.25), inset 0 0 20px rgba(212, 175, 55, 0.15);
+      transform-style: preserve-3d; transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
     }
-    .ecard--key { border: 2px solid var(--gold-light); box-shadow: 0 25px 60px rgba(212,175,55,0.35), inset 0 0 35px rgba(212,175,55,0.25); }
+    .ecard--key {
+      border: 2px solid #996515; box-shadow: 0 25px 55px rgba(153, 101, 21, 0.35), inset 0 0 30px rgba(212, 175, 55, 0.25);
+    }
     .ecard__photo {
-      width: 100%; height: 190px; border-radius: 14px; background-size: cover; background-position: center;
-      margin-bottom: 1.1rem; border: 1px solid rgba(212,175,55,0.4); transform: translateZ(25px); background-color: #2a0404;
+      width: 100%; height: 175px; border-radius: 14px; background-size: cover; background-position: center;
+      background-color: #E8DEC8; margin-bottom: 0.9rem; border: 1px solid rgba(180, 136, 40, 0.4); transform: translateZ(20px);
     }
-    .ecard__name { font-family: var(--font-display); font-size: 1.55rem; color: var(--gold-light); margin-bottom: 0.65rem; transform: translateZ(30px); }
-    .ecard__meta { display: flex; justify-content: center; gap: 1rem; font-family: var(--font-sans); font-size: 0.78rem; color: var(--gold-primary); margin-bottom: 0.5rem; }
+    .ecard__name { font-family: var(--font-display); font-size: 1.4rem; color: #5A1208; margin-bottom: 0.5rem; transform: translateZ(25px); }
+    .ecard__meta { display: flex; justify-content: center; gap: 0.85rem; font-family: var(--font-sans); font-size: 0.75rem; color: #8A5A10; font-weight: 600; margin-bottom: 0.45rem; }
     .ecard__meta span, .ecard__where { display: inline-flex; align-items: center; gap: 5px; }
-    .ecard__where { font-weight: 600; font-size: 1rem; color: var(--cream); margin-bottom: 0.65rem; }
-    .ecard__note { font-size: 0.98rem; color: rgba(251,246,236,0.85); margin-bottom: 1.15rem; line-height: 1.45; }
-    .i { width: 15px; height: 15px; stroke: var(--gold-primary); stroke-width: 1.8; fill: none; }
+    .ecard__where { font-weight: 700; font-size: 0.95rem; color: #3E1908; margin-bottom: 0.5rem; }
+    .ecard__note { font-size: 0.92rem; color: #5C3A21; margin-bottom: 1rem; line-height: 1.4; }
+    .i { width: 14px; height: 14px; stroke: #8A5A10; stroke-width: 1.8; fill: none; }
     .ecard__btn, .btn {
-      display: inline-block; padding: 10px 24px; border-radius: 999px;
-      background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728); color: #120101;
-      font-family: var(--font-sans); font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.18em; text-decoration: none; border: none; cursor: pointer; transition: 0.25s;
+      display: inline-block; padding: 9px 22px; border-radius: 999px;
+      background: linear-gradient(135deg, #8A5A10, #D4AF37, #73480A); color: #fff;
+      font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.16em; text-decoration: none; border: none; cursor: pointer; transition: transform 0.25s ease;
     }
-    .ecard__btn:hover, .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,175,55,0.6); }
-    .carousel__nav { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
-    .carousel__arrows { display: flex; gap: 1rem; }
+    .ecard__btn:hover, .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(138, 90, 16, 0.4); }
+    .carousel__nav { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+    .carousel__arrows { display: flex; gap: 0.85rem; }
     .carousel__arrow {
-      width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--gold-primary);
-      background: rgba(18,2,2,0.85); color: var(--gold-light); font-size: 1.35rem; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px; border-radius: 50%; border: 1px solid #996515;
+      background: rgba(251, 246, 236, 0.9); color: #5A1208; font-size: 1.25rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(44, 18, 8, 0.15);
     }
-    .carousel__dots { display: flex; gap: 8px; list-style: none; }
-    .carousel__dots li { width: 8px; height: 8px; border-radius: 50%; background: rgba(212,175,55,0.35); cursor: pointer; transition: 0.3s; }
-    .carousel__dots li.is-active { width: 24px; border-radius: 999px; background: var(--gold-light); }
+    .carousel__dots { display: flex; gap: 7px; list-style: none; }
+    .carousel__dots li { width: 7px; height: 7px; border-radius: 50%; background: rgba(138, 90, 16, 0.35); cursor: pointer; transition: 0.3s; }
+    .carousel__dots li.is-active { width: 22px; border-radius: 999px; background: #7A1C12; }
 
-    /* Meet the Couple Parallax */
     .meet { z-index: 2; overflow: visible; }
     .meet__sky { position: absolute; top: 0; left: 0; right: 0; height: 45%; overflow: hidden; pointer-events: none; z-index: 2; }
-    .cloud { position: absolute; width: 65%; height: auto; opacity: 0.75; }
-    .cloud--a { top: 6%; left: -10%; }
-    .cloud--b { top: 18%; right: -15%; width: 55%; }
-    .cloud--c { top: 30%; left: 15%; width: 50%; }
-    .meet__title { position: absolute; top: 8%; left: 0; right: 0; text-align: center; z-index: 4; padding: 0 1.5rem; }
+    .cloud { position: absolute; width: 65%; height: auto; opacity: 0.85; }
+    .cloud--a { top: 5%; left: -12%; }
+    .cloud--b { top: 16%; right: -15%; width: 55%; }
+    .cloud--c { top: 28%; left: 12%; width: 50%; }
+    .meet__title { position: absolute; top: 6%; left: 0; right: 0; text-align: center; z-index: 4; padding: 0 1.5rem; }
     .couple-figure {
-      position: absolute; bottom: -8%; left: 50%; transform: translateX(-50%);
-      width: 76%; max-width: 440px; height: auto; z-index: 3;
-      filter: drop-shadow(0 25px 45px rgba(0,0,0,0.9)); will-change: transform; pointer-events: none;
+      position: absolute; bottom: -6%; left: 50%; transform: translateX(-50%);
+      width: 78%; max-width: 440px; height: auto; z-index: 3; pointer-events: none; will-change: transform;
     }
 
-    /* Section Five & RSVP */
     #section-five { z-index: 5; }
     .panel__inner {
       position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column;
       align-items: center; justify-content: center; padding: 2.5rem 2rem; text-align: center;
     }
-    .shot { padding: 10px; background: rgba(18,2,2,0.88); border: 2px solid var(--gold-primary); border-radius: 200px 200px 16px 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
-    .shot__img { width: 100%; height: 360px; border-radius: 190px 190px 10px 10px; background-size: cover; background-position: center; background-color: #2a0404; }
+    .shot { padding: 8px; background: rgba(251, 246, 236, 0.92); border: 1.5px solid #996515; border-radius: 18px; box-shadow: 0 15px 35px rgba(44, 18, 8, 0.2); }
+    .shot__img { width: 100%; height: 310px; border-radius: 12px; background-size: cover; background-position: center; background-color: #E8DEC8; }
 
     .form--compact {
-      width: 100%; max-width: 360px; background: rgba(20, 2, 2, 0.9); backdrop-filter: blur(14px);
-      padding: 1.5rem; border-radius: 18px; border: 1px solid rgba(212,175,55,0.5);
-      display: flex; flex-direction: column; gap: 0.9rem; text-align: left; box-shadow: 0 20px 45px rgba(0,0,0,0.8);
+      width: 100%; max-width: 320px; background: rgba(251, 246, 236, 0.92); backdrop-filter: blur(10px);
+      padding: 1.15rem 1.25rem; border-radius: 16px; border: 1px solid rgba(180, 136, 40, 0.45);
+      display: flex; flex-direction: column; gap: 0.65rem; text-align: left; box-shadow: 0 12px 30px rgba(44, 18, 8, 0.12);
     }
-    .field { display: flex; flex-direction: column; gap: 4px; font-family: var(--font-sans); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold-light); }
+    .field {
+      display: flex; flex-direction: column; gap: 3px; font-family: var(--font-sans);
+      font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #6E3B16; border: none;
+    }
     .field input[type="text"], .field select {
-      background: rgba(255,255,255,0.07); border: 1px solid rgba(212,175,55,0.4);
-      border-radius: 8px; padding: 10px 12px; color: #fff; font-family: var(--font-sans); font-size: 0.9rem;
+      background: #fff; border: 1px solid rgba(180, 136, 40, 0.5); border-radius: 8px;
+      padding: 8px 10px; color: var(--ink-dark); font-family: var(--font-sans); font-size: 0.85rem;
     }
-    .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; align-items: end; }
-    .choices { display: flex; gap: 0.75rem; padding-top: 6px; }
-    .choices label { display: flex; align-items: center; gap: 4px; cursor: pointer; font-size: 0.8rem; }
-    .btn--full { width: 100%; margin-top: 0.4rem; }
+    .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; align-items: end; }
+    .choices { display: flex; gap: 0.65rem; padding-top: 4px; }
+    .choices label { display: flex; align-items: center; gap: 4px; cursor: pointer; font-size: 0.78rem; color: var(--ink-dark); }
+    .btn--full { width: 100%; margin-top: 0.25rem; }
 
-    /* Countdown */
-    .count {
-      list-style: none; display: flex; justify-content: center; gap: 1.25rem; margin-top: 1rem;
-      background: rgba(20, 2, 2, 0.88); padding: 1.25rem 2rem; border-radius: 16px; border: 1px solid rgba(212,175,55,0.55); backdrop-filter: blur(10px);
+    .count { list-style: none; display: flex; justify-content: center; gap: 1.35rem; margin-top: 0.5rem; }
+    .count li { display: flex; flex-direction: column; align-items: center; min-width: 52px; }
+    .count b { font-family: var(--font-display); font-size: clamp(1.6rem, 4.5vw, 2.35rem); color: #5A1208; }
+    .count span {
+      font-family: var(--font-sans); font-size: 0.65rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.18em; color: #8A5A10;
     }
-    .count li { display: flex; flex-direction: column; align-items: center; min-width: 58px; }
-    .count b { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.6rem); color: var(--gold-light); }
-    .count span { font-family: var(--font-sans); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold-primary); }
 
-    /* Footer */
-    .verse { font-size: 1.35rem; color: var(--gold-light); line-height: 1.6; margin-bottom: 1.2rem; }
-    .footer__names { font-family: var(--font-display); font-size: 1.6rem; color: var(--gold-light); margin: 0.5rem 0; }
+    .verse { font-size: 1.2rem; color: #5A1208; line-height: 1.55; margin-bottom: 0.85rem; }
+    .footer__mark { color: #996515; font-size: 1.3rem; }
+    .footer__names { font-family: var(--font-display); font-size: 1.4rem; color: #5A1208; margin: 0.35rem 0; }
+    .footer__line { font-size: 0.95rem; color: #5C3A21; }
     .footer__top {
-      margin-top: 1.5rem; color: var(--gold-primary); font-family: var(--font-sans);
-      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.25em; text-decoration: none; border-bottom: 1px solid var(--gold-primary); padding-bottom: 4px;
+      margin-top: 1.1rem; color: #8A5A10; font-family: var(--font-sans); font-size: 0.72rem;
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; text-decoration: none; border-bottom: 1px solid #8A5A10; padding-bottom: 3px;
     }
 
-    /* Music Toggle */
     .music-toggle {
-      position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 95; width: 48px; height: 48px;
-      border-radius: 50%; background: rgba(18,2,2,0.88); border: 1px solid var(--gold-primary);
-      color: var(--gold-light); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+      position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 95; width: 46px; height: 46px;
+      border-radius: 50%; background: rgba(251, 246, 236, 0.9); border: 1.5px solid #996515;
+      color: #5A1208; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 25px rgba(44, 18, 8, 0.25);
     }
-    .music-toggle svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2; fill: none; }
+    .music-toggle svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.8; fill: none; }
     .music-toggle.is-playing .icon-off { display: none; }
     .music-toggle:not(.is-playing) .icon-on { display: none; }
 
     @keyframes spinSlow { 100% { transform: rotate(360deg); } }
-    @keyframes goldShine { to { background-position: 200% center; } }
     @keyframes scrollPulse {
       0% { transform: scaleY(0); transform-origin: top; }
       50% { transform: scaleY(1); transform-origin: top; }
@@ -287,50 +281,42 @@
 </head>
 <body>
 
-  <!-- 3D WebGL Particle Canvas -->
-  <canvas id="webgl-canvas"></canvas>
+  <canvas id="webgl-blessings"></canvas>
 
-  <!-- Language Switcher -->
   <nav class="lang-pill" aria-label="Language selector">
     <button type="button" class="lang-pill__btn is-active" data-lang="en">EN</button>
     <button type="button" class="lang-pill__btn" data-lang="te">TE</button>
     <button type="button" class="lang-pill__btn" data-lang="hi">HI</button>
   </nav>
 
-  <!-- INTRO SPLASH -->
+  <noscript><style>.intro{display:none!important}</style></noscript>
   <div class="intro" id="intro" role="dialog" aria-label="Invitation film">
     <video class="intro__video" id="introVideo" playsinline webkit-playsinline muted preload="auto">
       <source src="../assets/intro.mp4" type="video/mp4" />
     </video>
-    <img class="intro__poster" id="introPoster" src="../assets/intro-poster.webp"
-         onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=85'"
-         alt="Wax Seal Envelope" />
+    <img class="intro__poster" id="introPoster" src="../assets/intro-poster.webp" alt="Ivory wedding envelope with a gold wax seal" />
     <button class="intro__seal" id="introSeal" type="button" aria-label="Open wedding invitation"><span class="intro__seal-ring"></span></button>
-    <button class="intro__play" id="introPlay" type="button">Tap Wax Seal to Open</button>
+    <button class="intro__play" id="introPlay" type="button"><span class="intro__hint">Tap to open</span></button>
     <button class="intro__skip" id="introSkip" type="button" hidden>Skip</button>
   </div>
 
-  <!-- HERO (../assets/hero.webp) -->
   <header class="hero" id="top">
-    <img class="hero__img" src="../assets/hero.webp"
-         onerror="this.src='https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=85'"
-         alt="Temple Gopuram" fetchpriority="high" />
+    <img class="hero__img" src="../assets/hero.webp" alt="Temple gopuram beside lotus lake" fetchpriority="high" />
     <div class="hero__veil" aria-hidden="true"></div>
 
     <div class="hero__inner">
-      <p class="hero__blessing" data-i18n="hero_blessing">॥ శ్రీ గణాధిపతయే నమః ॥</p>
+      <p class="hero__blessing" data-i18n="hero_blessing">॥ ఓం ॥</p>
       <p class="hero__eyebrow" data-i18n="hero_eyebrow">Together with our families</p>
 
       <h1 class="hero__names">
-        <span class="hero__name" data-i18n="groom_name">Venkata Chandra Sekhar</span>
+        <span class="hero__name">Venkata Chandra Sekhar</span>
         <span class="hero__amp">&amp;</span>
-        <span class="hero__name" data-i18n="bride_name">Varsha</span>
+        <span class="hero__name">Varsha</span>
       </h1>
 
       <p class="hero__tagline" data-i18n="hero_tagline">we are getting married</p>
       <div class="hero__rule" aria-hidden="true"><span></span><i>❖</i><span></span></div>
 
-      <!-- Scratch Card -->
       <div class="scratch" id="scratch">
         <p class="hero__date scratch__content">
           <span>Sunday</span>
@@ -339,101 +325,116 @@
         <canvas id="scratchCanvas"></canvas>
       </div>
     </div>
-    <a class="hero__scroll" href="#invitation"><span class="hero__scroll-line"></span></a>
+
+    <a class="hero__scroll" href="#invitation" aria-label="Scroll to invitation">
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+    </a>
   </header>
 
-  <!-- THE FAMILIES (../assets/families.webp) -->
   <section class="section families" id="invitation">
-    <img class="families__img" src="../assets/families.webp"
-         onerror="this.src='https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=85'"
-         alt="" loading="lazy" />
-
+    <img class="families__img" src="../assets/families.webp" alt="" aria-hidden="true" loading="lazy" />
     <div class="families__inner reveal">
-      <h2 class="h2" data-i18n="families_title">Two families,<br />one sacred thread</h2>
+      <h2 class="h2">Two families,<br />one thread</h2>
       <ul class="house">
         <li class="house__side">
-          <p class="house__name">Chi. Venkata Chandra Sekhar</p>
-          <p class="house__of">Son of Sri Venkata Ratnam &amp; Smt. Veera Kumari</p>
+          <p class="house__name">Venkata Chandra Sekhar</p>
+          <p class="house__of">son of Venkata Ratnam &amp; Veera Kumari</p>
         </li>
         <li class="house__knot" aria-hidden="true">❖</li>
         <li class="house__side">
-          <p class="house__name">Chi. La. Sow. Varsha</p>
-          <p class="house__of">D/o Sri Vaitla Gopal Venkatachalam (Late) &amp; Smt. Sarada</p>
+          <p class="house__name">Varsha</p>
+          <p class="house__of">D/o Sri Vaitla Gopal Venkatachalam (Late) - Smt. Sarada</p>
         </li>
       </ul>
-      <p class="families__blessing" data-i18n="families_blessing">with the blessings of our elders</p>
+      <p class="families__blessing">with the blessings of our elders</p>
     </div>
   </section>
 
-  <!-- CELEBRATIONS (../assets/celebrations.webp) -->
   <section class="celebrate" id="events">
-    <img class="celebrate__img" src="../assets/celebrations.webp"
-         onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=85'"
-         alt="" loading="lazy" />
-
+    <img class="celebrate__img" src="../assets/celebrations.webp" alt="" aria-hidden="true" loading="lazy" />
     <div class="celebrate__inner reveal">
       <div class="celebrate__head">
         <p class="script">Four days of joy</p>
-        <h2 class="h2" data-i18n="celebrations_title">The Celebrations</h2>
+        <h2 class="h2">The celebrations</h2>
       </div>
 
       <div class="carousel" id="celebrations">
-        <ul class="carousel__track" tabindex="0">
+        <ul class="carousel__track" tabindex="0" role="group">
           <li class="slide">
             <article class="ecard">
-              <div class="ecard__photo" style="background-image:url('../assets/nichayathartham.webp')" role="img"></div>
+              <div class="ecard__photo" style="background-image: url('../assets/nichayathartham.webp')" role="img"></div>
               <h3 class="ecard__name">Nichayathartham</h3>
-              <p class="ecard__meta"><span><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Thu 20 Aug 2026</span><span><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>6:00 PM</span></p>
-              <p class="ecard__where">Kalyana Mandapam</p>
-              <p class="ecard__note">The formal engagement and Lagna Patrika exchange.</p>
-              <a class="ecard__btn" href="https://maps.google.com/?q=Kalyana+Mandapam" target="_blank">View location</a>
+              <p class="ecard__meta">
+                <span><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Thu 20 Aug 2026</span>
+                <span><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>6:00 PM</span>
+              </p>
+              <p class="ecard__where"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Kalyana Mandapam</p>
+              <p class="ecard__note">The formal engagement, where families exchange trays.</p>
+              <a class="ecard__btn" href="https://maps.google.com/?q=Kalyana+Mandapam" target="_blank" rel="noopener">View location</a>
             </article>
           </li>
+
           <li class="slide">
             <article class="ecard">
-              <div class="ecard__photo" style="background-image:url('../assets/mehendi.webp')" role="img"></div>
+              <div class="ecard__photo" style="background-image: url('../assets/mehendi.webp')" role="img"></div>
               <h3 class="ecard__name">Mehendi &amp; Nalangu</h3>
-              <p class="ecard__meta"><span><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Fri 21 Aug 2026</span><span><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>4:00 PM</span></p>
-              <p class="ecard__where">Home Lawn</p>
-              <p class="ecard__note">Henna, turmeric paste, and traditional songs.</p>
-              <a class="ecard__btn" href="https://maps.google.com/?q=Wedding+Venue" target="_blank">View location</a>
+              <p class="ecard__meta">
+                <span><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Fri 21 Aug 2026</span>
+                <span><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>4:00 PM</span>
+              </p>
+              <p class="ecard__where"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Home lawn</p>
+              <p class="ecard__note">Henna, turmeric and songs.</p>
+              <a class="ecard__btn" href="https://maps.google.com/?q=Wedding+Venue" target="_blank" rel="noopener">View location</a>
             </article>
           </li>
+
           <li class="slide">
             <article class="ecard">
-              <div class="ecard__photo" style="background-image:url('../assets/sangeet.webp')" role="img"></div>
+              <div class="ecard__photo" style="background-image: url('../assets/sangeet.webp')" role="img"></div>
               <h3 class="ecard__name">Sangeet</h3>
-              <p class="ecard__meta"><span><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Sat 22 Aug 2026</span><span><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7:30 PM</span></p>
-              <p class="ecard__where">Heritage Hall</p>
-              <p class="ecard__note">Musical night and celebratory feast.</p>
-              <a class="ecard__btn" href="https://maps.google.com/?q=Heritage+Hall" target="_blank">View location</a>
+              <p class="ecard__meta">
+                <span><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Sat 22 Aug 2026</span>
+                <span><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7:30 PM</span>
+              </p>
+              <p class="ecard__where"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Heritage Hall</p>
+              <p class="ecard__note">Rehearsals and dinner.</p>
+              <a class="ecard__btn" href="https://maps.google.com/?q=Heritage+Hall" target="_blank" rel="noopener">View location</a>
             </article>
           </li>
-          <li class="slide ecard--key">
-            <article class="ecard">
-              <div class="ecard__photo" style="background-image:url('../assets/muhurtham.webp')" role="img"></div>
-              <h3 class="ecard__name">Sumuhurtham</h3>
-              <p class="ecard__meta"><span><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Sun 23 Aug 2026</span><span><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5:45 AM</span></p>
-              <p class="ecard__where">Sri Kalyana Venkateswara Mandapam</p>
-              <p class="ecard__note">Jeelakarra Bellam &amp; Mangalya Dharanam at dawn.</p>
-              <a class="ecard__btn" href="https://maps.google.com/?q=Sri+Kalyana+Venkateswara+Mandapam" target="_blank">View location</a>
+
+          <li class="slide">
+            <article class="ecard ecard--key">
+              <div class="ecard__photo" style="background-image: url('../assets/muhurtham.webp')" role="img"></div>
+              <h3 class="ecard__name">Muhurtham</h3>
+              <p class="ecard__meta">
+                <span><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Sun 23 Aug 2026</span>
+                <span><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5:45 AM</span>
+              </p>
+              <p class="ecard__where"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Sri Kalyana Venkateswara Mandapam</p>
+              <p class="ecard__note">The thaali is tied at first light.</p>
+              <a class="ecard__btn" href="https://maps.google.com/?q=Sri+Kalyana+Venkateswara+Mandapam" target="_blank" rel="noopener">View location</a>
             </article>
           </li>
+
           <li class="slide">
             <article class="ecard">
-              <div class="ecard__photo" style="background-image:url('../assets/reception.webp')" role="img"></div>
-              <h3 class="ecard__name">Grand Reception</h3>
-              <p class="ecard__meta"><span><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Sun 23 Aug 2026</span><span><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7:00 PM</span></p>
-              <p class="ecard__where">Grand Ballroom</p>
-              <p class="ecard__note">Vivaha Bhojanam dinner and send-off.</p>
-              <a class="ecard__btn" href="https://maps.google.com/?q=Grand+Ballroom" target="_blank">View location</a>
+              <div class="ecard__photo" style="background-image: url('../assets/reception.webp')" role="img"></div>
+              <h3 class="ecard__name">Reception</h3>
+              <p class="ecard__meta">
+                <span><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Sun 23 Aug 2026</span>
+                <span><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7:00 PM</span>
+              </p>
+              <p class="ecard__where"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Grand Ballroom</p>
+              <p class="ecard__note">Dinner and send-off.</p>
+              <a class="ecard__btn" href="https://maps.google.com/?q=Grand+Ballroom" target="_blank" rel="noopener">View location</a>
             </article>
           </li>
         </ul>
+
         <div class="carousel__nav">
           <div class="carousel__arrows">
-            <button class="carousel__arrow" type="button" data-step="-1">‹</button>
-            <button class="carousel__arrow" type="button" data-step="1">›</button>
+            <button class="carousel__arrow" type="button" data-step="-1" aria-label="Previous">‹</button>
+            <button class="carousel__arrow" type="button" data-step="1" aria-label="Next">›</button>
           </div>
           <ol class="carousel__dots"></ol>
         </div>
@@ -441,42 +442,34 @@
     </div>
   </section>
 
-  <!-- MEET THE COUPLE (../assets/couple.webp & couple-figure.webp) -->
   <section class="meet" id="couple">
-    <img class="meet__img" src="../assets/couple.webp"
-         onerror="this.src='https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=85'"
-         alt="" loading="lazy" />
+    <img class="meet__img" src="../assets/couple.webp" alt="" aria-hidden="true" loading="lazy" />
     <div class="meet__sky" aria-hidden="true">
-      <img class="cloud cloud--a" src="../assets/cloud1.webp" onerror="this.style.display='none'" alt="" />
-      <img class="cloud cloud--b" src="../assets/cloud1.webp" onerror="this.style.display='none'" alt="" />
-      <img class="cloud cloud--c" src="../assets/cloud1.webp" onerror="this.style.display='none'" alt="" />
+      <img class="cloud cloud--a" src="../assets/cloud1.webp" alt="" loading="lazy" />
+      <img class="cloud cloud--b" src="../assets/cloud1.webp" alt="" loading="lazy" />
+      <img class="cloud cloud--c" src="../assets/cloud1.webp" alt="" loading="lazy" />
     </div>
+    <img class="couple-figure" id="coupleFigure" src="../assets/couple-figure.webp" alt="Couple exchanging garlands" loading="lazy" />
     <div class="meet__title reveal">
       <p class="script">The two of them</p>
-      <h2 class="h2" data-i18n="couple_title">Meet the Couple</h2>
+      <h2 class="h2">Meet the couple</h2>
     </div>
-    <img class="couple-figure" id="coupleFigure" src="../assets/couple-figure.webp"
-         onerror="this.src='https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?auto=format&fit=crop&w=800&q=85'"
-         alt="Couple exchanging garlands" loading="lazy" />
   </section>
 
-  <!-- GALLERY (../assets/section-five.webp) -->
   <section class="panel" id="section-five">
-    <img class="panel__img" src="../assets/section-five.webp"
-         onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85'"
-         alt="" loading="lazy" />
+    <img class="panel__img" src="../assets/section-five.webp" alt="" aria-hidden="true" loading="lazy" />
     <div class="panel__inner reveal">
       <div class="carousel gallery">
-        <ul class="carousel__track" tabindex="0">
-          <li class="slide"><div class="shot"><div class="shot__img" style="background-image:url('../assets/shot1.webp')"></div></div></li>
-          <li class="slide"><div class="shot"><div class="shot__img" style="background-image:url('../assets/shot2.webp')"></div></div></li>
-          <li class="slide"><div class="shot"><div class="shot__img" style="background-image:url('../assets/shot3.webp')"></div></div></li>
-          <li class="slide"><div class="shot"><div class="shot__img" style="background-image:url('../assets/shot4.webp')"></div></div></li>
+        <ul class="carousel__track" tabindex="0" role="group">
+          <li class="slide"><div class="shot"><div class="shot__img" style="background-image: url('../assets/shot1.webp')" role="img"></div></div></li>
+          <li class="slide"><div class="shot"><div class="shot__img" style="background-image: url('../assets/shot2.webp')" role="img"></div></div></li>
+          <li class="slide"><div class="shot"><div class="shot__img" style="background-image: url('../assets/shot3.webp')" role="img"></div></div></li>
+          <li class="slide"><div class="shot"><div class="shot__img" style="background-image: url('../assets/shot4.webp')" role="img"></div></div></li>
         </ul>
         <div class="carousel__nav">
           <div class="carousel__arrows">
-            <button class="carousel__arrow" type="button" data-step="-1">‹</button>
-            <button class="carousel__arrow" type="button" data-step="1">›</button>
+            <button class="carousel__arrow" type="button" data-step="-1" aria-label="Previous">‹</button>
+            <button class="carousel__arrow" type="button" data-step="1" aria-label="Next">›</button>
           </div>
           <ol class="carousel__dots"></ol>
         </div>
@@ -484,42 +477,46 @@
     </div>
   </section>
 
-  <!-- RSVP (../assets/rsvp-frame.webp) -->
   <section class="panel panel--rsvp" id="rsvp">
-    <img class="panel__img" src="../assets/rsvp-frame.webp"
-         onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=85'"
-         alt="" loading="lazy" />
+    <img class="panel__img" src="../assets/rsvp-frame.webp" alt="" aria-hidden="true" loading="lazy" />
     <div class="panel__inner reveal">
       <p class="script">Please reply</p>
-      <h2 class="h2" data-i18n="rsvp_title">Will you join us?</h2>
+      <h2 class="h2">Will you join us?</h2>
       <div class="rule-orn" aria-hidden="true"><span></span><i>❖</i><span></span></div>
 
-      <form class="form form--compact" id="rsvpForm">
-        <label class="field"><span>Your name</span><input type="text" required placeholder="Full name" /></label>
-        <label class="field"><span>Email or phone</span><input type="text" required placeholder="Contact info" /></label>
+      <form class="form form--compact" id="rsvpForm" novalidate>
+        <label class="field">
+          <span>Your name</span>
+          <input type="text" name="name" required autocomplete="name" placeholder="Your full name" />
+        </label>
+        <label class="field">
+          <span>Email or phone</span>
+          <input type="text" name="contact" required autocomplete="email" placeholder="Email or phone" />
+        </label>
         <div class="form__row">
-          <fieldset class="field">
+          <fieldset class="field field--choice">
             <legend>Coming?</legend>
             <div class="choices">
-              <label><input type="radio" name="attending" checked /><span>Yes</span></label>
-              <label><input type="radio" name="attending" /><span>No</span></label>
+              <label><input type="radio" name="attending" value="yes" checked /><span>Yes</span></label>
+              <label><input type="radio" name="attending" value="no" /><span>No</span></label>
             </div>
           </fieldset>
-          <label class="field"><span>Guests</span><select><option>1</option><option>2</option><option>3+</option></select></label>
+          <label class="field">
+            <span>Guests</span>
+            <select name="guests"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select>
+          </label>
         </div>
-        <button class="btn btn--full" type="submit">Send reply</button>
+        <button class="btn btn--full" type="submit">Send our reply</button>
+        <p class="form__status" id="formStatus" role="status" style="margin-top:6px; font-size:0.75rem; color:#7A1C12;"></p>
       </form>
     </div>
   </section>
 
-  <!-- COUNTDOWN (../assets/countdown.webp) -->
   <section class="panel panel--count" id="countdown">
-    <img class="panel__img" src="../assets/countdown.webp"
-         onerror="this.src='https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=85'"
-         alt="" loading="lazy" />
+    <img class="panel__img" src="../assets/countdown.webp" alt="" aria-hidden="true" loading="lazy" />
     <div class="panel__inner reveal">
       <p class="script">Counting the days</p>
-      <ul class="count" id="count">
+      <ul class="count" id="count" aria-live="polite">
         <li><b data-unit="days">—</b><span>Days</span></li>
         <li><b data-unit="hours">—</b><span>Hrs</span></li>
         <li><b data-unit="minutes">—</b><span>Min</span></li>
@@ -528,15 +525,17 @@
     </div>
   </section>
 
-  <!-- FOOTER (../assets/last.webp) -->
   <footer class="panel panel--last">
-    <img class="panel__img" src="../assets/last.webp"
-         onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=85'"
-         alt="" loading="lazy" />
+    <img class="panel__img" src="../assets/last.webp" alt="" aria-hidden="true" loading="lazy" />
     <div class="panel__inner reveal">
-      <p class="verse">“మనసులు కలిసిన జీవనమే జీవితం”<br /><em>A life of one mind is a life indeed.</em></p>
+      <p class="verse">
+        “మనసులు కలిసిన జీవనమే జీవితం” <br />
+        <em>A life of one mind is a life indeed.</em>
+      </p>
+      <p class="footer__mark" aria-hidden="true">❖</p>
       <p class="footer__names">Venkata Chandra Sekhar &amp; Varsha</p>
-      <p class="footer__top"><a href="#top" style="color:var(--gold-primary); text-decoration:none;">Back to top</a></p>
+      <p class="footer__line">With gratitude to our elders, and to you for coming.</p>
+      <a class="footer__top" href="#top">Back to the top</a>
     </div>
   </footer>
 
@@ -544,7 +543,7 @@
     <source src="../assets/music.mp3" type="audio/mpeg" />
   </audio>
 
-  <button id="musicToggle" class="music-toggle is-playing" type="button" aria-label="Toggle sound">
+  <button id="musicToggle" class="music-toggle is-playing" type="button" aria-pressed="true" aria-label="Toggle sound">
     <svg class="icon-off" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <svg class="icon-on" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
@@ -556,81 +555,206 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // 3D WebGL Golden Blessing Particles
+    const webglCanvas = document.getElementById('webgl-blessings');
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 30;
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-canvas'), alpha: true, antialias: true });
+    const renderer = new THREE.WebGLRenderer({ canvas: webglCanvas, alpha: true, antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     const pGeo = new THREE.BufferGeometry();
     const pPos = new Float32Array(350 * 3);
     for (let i = 0; i < 350 * 3; i++) pPos[i] = (Math.random() - 0.5) * 65;
     pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-    const particles = new THREE.Points(pGeo, new THREE.PointsMaterial({ size: 0.28, color: 0xD4AF37, transparent: true, opacity: 0.7 }));
+    const pMat = new THREE.PointsMaterial({ size: 0.28, color: 0xD4AF37, transparent: true, opacity: 0.65 });
+    const particles = new THREE.Points(pGeo, pMat);
     scene.add(particles);
 
-    function animate() {
-      requestAnimationFrame(animate);
+    function animate3D() {
+      requestAnimationFrame(animate3D);
       particles.rotation.y += 0.0007;
+      particles.rotation.x += 0.0003;
       renderer.render(scene, camera);
     }
-    animate();
+    animate3D();
 
-    // Intro unlock
+    function burstGoldenParticles() {
+      gsap.fromTo(pMat, { size: 0.85, opacity: 1 }, { size: 0.28, opacity: 0.65, duration: 1.6, ease: "power2.out" });
+      gsap.to(particles.rotation, { y: "+=2.2", duration: 1.6, ease: "power3.out" });
+    }
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
     const intro = document.getElementById('intro');
     const introVideo = document.getElementById('introVideo');
     const introPoster = document.getElementById('introPoster');
+    const introSeal = document.getElementById('introSeal');
+    const introPlay = document.getElementById('introPlay');
+    const introSkip = document.getElementById('introSkip');
     const bgMusic = document.getElementById('bgMusic');
 
-    function unlock() {
+    function unlockInvitation() {
+      burstGoldenParticles();
       bgMusic.play().catch(() => {});
-      introVideo.play().catch(() => {});
-      gsap.to(['#introSeal', '#introPlay'], { scale: 0, opacity: 0, duration: 0.45 });
-      gsap.to(introPoster, { opacity: 0, duration: 1 });
-      setTimeout(() => gsap.to(intro, { yPercent: -100, opacity: 0, duration: 1.1, onComplete: () => intro.remove() }), 800);
+      introSkip.hidden = false;
+      gsap.to([introSeal, introPlay], { scale: 0, opacity: 0, duration: 0.45, ease: "back.in(1.7)" });
+      gsap.to(introPoster, { scale: 1.12, opacity: 0, duration: 1.1, ease: "power3.inOut" });
+      introVideo.play().then(() => {
+        introVideo.addEventListener('ended', dismissIntro);
+      }).catch(() => {
+        setTimeout(dismissIntro, 850);
+      });
     }
 
-    document.getElementById('introSeal').onclick = unlock;
-    document.getElementById('introPlay').onclick = unlock;
+    function dismissIntro() {
+      gsap.to(intro, { yPercent: -100, opacity: 0, duration: 1.1, ease: "power4.inOut", onComplete: () => intro.style.display = 'none' });
+    }
 
-    // Scratch card
-    const sc = document.getElementById('scratchCanvas');
-    const sCtx = sc.getContext('2d');
-    sc.width = 245; sc.height = 86;
-    sCtx.fillStyle = '#D4AF37'; sCtx.fillRect(0, 0, 245, 86);
-    sCtx.fillStyle = '#2A0404'; sCtx.font = '700 11px sans-serif'; sCtx.textAlign = 'center';
-    sCtx.fillText('✨ SCRATCH FOR DATE ✨', 122.5, 47);
+    introSeal.addEventListener('click', unlockInvitation);
+    introPlay.addEventListener('click', unlockInvitation);
+    introSkip.addEventListener('click', dismissIntro);
 
-    let drawing = false;
-    sc.onmousedown = () => drawing = true;
-    window.onmouseup = () => drawing = false;
-    sc.onmousemove = (e) => {
-      if (!drawing) return;
-      const r = sc.getBoundingClientRect();
-      sCtx.globalCompositeOperation = 'destination-out';
-      sCtx.beginPath(); sCtx.arc(e.clientX - r.left, e.clientY - r.top, 22, 0, Math.PI * 2); sCtx.fill();
+    const scratchCanvas = document.getElementById('scratchCanvas');
+    const ctx = scratchCanvas.getContext('2d');
+    let isDrawing = false;
+    let scratchedFired = false;
+
+    function initScratchFoil() {
+      scratchCanvas.width = scratchCanvas.offsetWidth || 225;
+      scratchCanvas.height = scratchCanvas.offsetHeight || 80;
+      const grad = ctx.createLinearGradient(0, 0, scratchCanvas.width, scratchCanvas.height);
+      grad.addColorStop(0, '#996515'); grad.addColorStop(0.3, '#FCF6BA'); grad.addColorStop(0.5, '#D4AF37');
+      grad.addColorStop(0.8, '#FBF5B7'); grad.addColorStop(1, '#8A6216');
+      ctx.fillStyle = grad; ctx.fillRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+      ctx.fillStyle = '#3E1908'; ctx.font = '600 11px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText('✨ SCRATCH FOR DATE ✨', scratchCanvas.width / 2, scratchCanvas.height / 2 + 4);
+    }
+    initScratchFoil();
+
+    function scratchMove(e) {
+      if (!isDrawing) return;
+      const rect = scratchCanvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      const x = clientX - rect.left; const y = clientY - rect.top;
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath(); ctx.arc(x, y, 22, 0, Math.PI * 2); ctx.fill();
+      if (!scratchedFired) {
+        scratchedFired = true;
+        burstGoldenParticles();
+        setTimeout(() => gsap.to(scratchCanvas, { opacity: 0, duration: 0.7, onComplete: () => scratchCanvas.remove() }), 1100);
+      }
+    }
+
+    scratchCanvas.addEventListener('mousedown', () => isDrawing = true);
+    scratchCanvas.addEventListener('touchstart', () => isDrawing = true, { passive: true });
+    window.addEventListener('mouseup', () => isDrawing = false);
+    window.addEventListener('touchend', () => isDrawing = false);
+    scratchCanvas.addEventListener('mousemove', scratchMove);
+    scratchCanvas.addEventListener('touchmove', scratchMove, { passive: true });
+
+    gsap.to('#coupleFigure', {
+      yPercent: 26, ease: "none",
+      scrollTrigger: { trigger: '#couple', start: 'top bottom', end: 'bottom top', scrub: 1 }
+    });
+    gsap.to('.cloud--a', { xPercent: 32, scrollTrigger: { trigger: '#couple', scrub: 1.5 } });
+    gsap.to('.cloud--b', { xPercent: -32, scrollTrigger: { trigger: '#couple', scrub: 1.2 } });
+    gsap.to('.cloud--c', { xPercent: 22, scrollTrigger: { trigger: '#couple', scrub: 1.8 } });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      gsap.fromTo(el, { y: 45, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 1.1, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 84%' }
+      });
+    });
+
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      const track = carousel.querySelector('.carousel__track');
+      const slides = Array.from(track.children);
+      const dotsContainer = carousel.querySelector('.carousel__dots');
+      const prevBtn = carousel.querySelector('[data-step="-1"]');
+      const nextBtn = carousel.querySelector('[data-step="1"]');
+
+      slides.forEach((_, idx) => {
+        const dot = document.createElement('li');
+        if (idx === 0) dot.classList.add('is-active');
+        dot.addEventListener('click', () => slides[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }));
+        dotsContainer.appendChild(dot);
+      });
+      const dots = Array.from(dotsContainer.children);
+
+      track.addEventListener('scroll', () => {
+        const center = track.scrollLeft + track.offsetWidth / 2;
+        let closestIdx = 0, minDistance = Infinity;
+        slides.forEach((slide, idx) => {
+          const dist = Math.abs(center - (slide.offsetLeft + slide.offsetWidth / 2));
+          if (dist < minDistance) { minDistance = dist; closestIdx = idx; }
+        });
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === closestIdx));
+      });
+
+      prevBtn?.addEventListener('click', () => track.scrollBy({ left: -track.offsetWidth * 0.85, behavior: 'smooth' }));
+      nextBtn?.addEventListener('click', () => track.scrollBy({ left: track.offsetWidth * 0.85, behavior: 'smooth' }));
+    });
+
+    document.querySelectorAll('.ecard').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.transform = `perspective(1000px) rotateX(${(((e.clientY - r.top) / r.height) - 0.5) * -10}deg) rotateY(${(((e.clientX - r.left) / r.width) - 0.5) * 10}deg)`;
+      });
+      card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)');
+    });
+
+    const translations = {
+      en: { hero_blessing: "॥ ఓం ॥", hero_eyebrow: "Together with our families", hero_tagline: "we are getting married" },
+      te: { hero_blessing: "॥ శ్రీ గణాధిపతయే నమః ॥", hero_eyebrow: "మా కుటుంబ సభ్యుల ఆశీస్సులతో", hero_tagline: "మా వివాహ మహోత్సవ ఆహ్వానం" },
+      hi: { hero_blessing: "॥ श्री गणेशाय नमः ॥", hero_eyebrow: "हमारे परिवारों के आशीर्वाद के साथ", hero_tagline: "हम विवाह बंधन में बंधने जा रहे हैं" }
     };
 
-    // Parallax
-    gsap.to('#coupleFigure', { yPercent: 26, ease: "none", scrollTrigger: { trigger: '#couple', start: 'top bottom', end: 'bottom top', scrub: 1 } });
+    document.querySelectorAll('.lang-pill__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.lang-pill__btn').forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        const lang = btn.dataset.lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.dataset.i18n;
+          if (translations[lang]?.[key]) el.textContent = translations[lang][key];
+        });
+        burstGoldenParticles();
+      });
+    });
 
-    // Countdown
-    const target = new Date("2026-08-23T05:45:00+05:30").getTime();
+    const targetTime = new Date("2026-08-23T05:45:00+05:30").getTime();
     setInterval(() => {
-      const d = Math.max(0, target - Date.now());
-      document.querySelector('[data-unit="days"]').textContent = Math.floor(d / 86400000);
-      document.querySelector('[data-unit="hours"]').textContent = Math.floor((d / 3600000) % 24);
-      document.querySelector('[data-unit="minutes"]').textContent = Math.floor((d / 60000) % 60);
-      document.querySelector('[data-unit="seconds"]').textContent = Math.floor((d / 1000) % 60);
+      const diff = Math.max(0, targetTime - Date.now());
+      document.querySelector('[data-unit="days"]').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.querySelector('[data-unit="hours"]').textContent = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      document.querySelector('[data-unit="minutes"]').textContent = Math.floor((diff / (1000 * 60)) % 60);
+      document.querySelector('[data-unit="seconds"]').textContent = Math.floor((diff / 1000) % 60);
     }, 1000);
 
-    // Music
+    document.getElementById('rsvpForm').addEventListener('submit', e => {
+      e.preventDefault();
+      burstGoldenParticles();
+      document.getElementById('formStatus').textContent = "✨ Thank you! Your reply has been sent.";
+      e.target.reset();
+    });
+
     const musicToggle = document.getElementById('musicToggle');
-    musicToggle.onclick = () => {
-      if (bgMusic.paused) { bgMusic.play(); musicToggle.classList.add('is-playing'); }
-      else { bgMusic.pause(); musicToggle.classList.remove('is-playing'); }
-    };
+    musicToggle.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play();
+        musicToggle.classList.add('is-playing');
+      } else {
+        bgMusic.pause();
+        musicToggle.classList.remove('is-playing');
+      }
+    });
   </script>
 </body>
 </html>
