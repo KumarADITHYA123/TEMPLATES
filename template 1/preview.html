@@ -422,11 +422,7 @@
       position: relative;
       z-index: 1;
     }
-    .meet__sky { position: absolute; top: 0; left: 0; right: 0; height: 45%; overflow: hidden; pointer-events: none; z-index: 2; }
-    .cloud { position: absolute; width: 65%; height: auto; opacity: 0.75; }
-    .cloud--a { top: 6%; left: -10%; }
-    .cloud--b { top: 18%; right: -15%; width: 55%; }
-    .cloud--c { top: 30%; left: 15%; width: 50%; }
+
     .meet__title {
       position: absolute; top: 6%; left: 50%; transform: translateX(-50%);
       width: 90%; max-width: 420px; text-align: center; z-index: 4;
@@ -836,11 +832,7 @@
   <section class="meet" id="couple">
     <img class="meet__img" src="assets/couple.webp"
          alt="Meet the couple" loading="lazy" />
-    <div class="meet__sky" aria-hidden="true">
-      <img class="cloud cloud--a" src="assets/cloud1.webp" onerror="this.style.display='none'" alt="" />
-      <img class="cloud cloud--b" src="assets/cloud1.webp" onerror="this.style.display='none'" alt="" />
-      <img class="cloud cloud--c" src="assets/cloud1.webp" onerror="this.style.display='none'" alt="" />
-    </div>
+
     <div class="meet__title reveal">
       <p class="script">The two of them</p>
       <h2 class="h2 gold-title" data-i18n="couple_title">Meet the Couple</h2>
