@@ -955,12 +955,18 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // 3D WebGL Golden Blessing Particles
+    // 3D WebGL Golden Blessing Particles (Performance Optimized)
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 30;
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-canvas'), alpha: true, antialias: true });
+    const renderer = new THREE.WebGLRenderer({
+      canvas: document.getElementById('webgl-canvas'),
+      alpha: true,
+      antialias: false,
+      powerPreference: "high-performance"
+    });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
 
     const pGeo = new THREE.BufferGeometry();
     const pPos = new Float32Array(350 * 3);
@@ -969,8 +975,10 @@
     const particles = new THREE.Points(pGeo, new THREE.PointsMaterial({ size: 0.28, color: 0xD4AF37, transparent: true, opacity: 0.7 }));
     scene.add(particles);
 
+    let webglActive = false;
     function animate() {
       requestAnimationFrame(animate);
+      if (!webglActive) return;
       particles.rotation.y += 0.0007;
       renderer.render(scene, camera);
     }
@@ -992,16 +1000,19 @@
     const musicToggle = document.getElementById('musicToggle');
 
     let dismissed = false;
+    let safetyTimer = null;
     function dismissIntro() {
       if (dismissed) return;
       dismissed = true;
+      if (safetyTimer) clearTimeout(safetyTimer);
+      webglActive = true;
       try { if (introVideo) introVideo.pause(); } catch (_) {}
       if (intro) {
         gsap.to(intro, {
           opacity: 0,
-          scale: 1.03,
-          duration: 0.85,
-          ease: 'power2.inOut',
+          scale: 1.02,
+          duration: 0.5,
+          ease: 'power2.out',
           onComplete: () => {
             intro.style.display = 'none';
             intro.remove();
@@ -1015,8 +1026,12 @@
       if (e && e.stopPropagation) e.stopPropagation();
       if (started || dismissed) return;
       started = true;
+      webglActive = true;
       if (intro) intro.classList.add('is-playing');
       if (introSkip) introSkip.hidden = false;
+
+      // Fail-safe watchdog: guarantee dismissal after 4.6 seconds if hardware stalls
+      safetyTimer = setTimeout(dismissIntro, 4600);
 
       // Start background wedding music
       if (bgMusic) {
@@ -1045,7 +1060,7 @@
           if (introPoster) introPoster.style.display = 'none';
           if (introSeal) introSeal.style.display = 'none';
         }
-      }, 450);
+      }, 250);
     }
 
     if (introSeal) {
@@ -1054,16 +1069,22 @@
     }
     if (intro) {
       intro.addEventListener('click', (e) => {
-        if (started || dismissed) return;
-        if (e.target === introSkip) return;
-        startIntro(e);
+        if (!started) {
+          if (e.target === introSkip) return;
+          startIntro(e);
+        } else if (!dismissed) {
+          dismissIntro();
+        }
       });
     }
     if (introVideo) {
       introVideo.addEventListener('ended', dismissIntro);
       introVideo.addEventListener('error', dismissIntro);
+      introVideo.addEventListener('pause', () => {
+        if (introVideo.currentTime > 3.8) dismissIntro();
+      });
       introVideo.addEventListener('timeupdate', () => {
-        if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.12) {
+        if (introVideo.currentTime >= 4.15) {
           dismissIntro();
         }
       });
