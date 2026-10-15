@@ -102,8 +102,21 @@
       position: relative; width: 100%; max-width: 660px; margin: 0 auto; overflow: hidden;
       box-shadow: 0 0 100px rgba(0,0,0,0.95); background-color: var(--bg-deep);
     }
-    .hero__img, .families__img, .celebrate__img, .meet__img, .panel__img {
+    .hero__img, .families__img, .celebrate__img, .meet__img {
       display: block; width: 100%; height: auto; min-height: 100vh; object-fit: cover;
+    }
+    .panel__img {
+      display: block; width: 100%; height: auto;
+    }
+    #section-five .panel__img {
+      aspect-ratio: 1024 / 1536;
+      min-height: 100vh;
+      object-fit: cover;
+    }
+    .panel--rsvp .panel__img {
+      aspect-ratio: 933 / 1686;
+      min-height: 100vh;
+      object-fit: cover;
     }
 
     /* Gold Gradient Typography (For Dark-Themed Sections) */
@@ -456,7 +469,7 @@
 
     /* Light Theme Contrast Controls for Ivory Panels */
     .panel--rsvp .panel__inner {
-      position: absolute; top: 15.5%; left: 0; right: 0; bottom: auto;
+      position: absolute; top: 20.5%; left: 0; right: 0; bottom: auto;
       display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
       padding: 0 1rem; text-align: center; z-index: 4;
     }
@@ -532,53 +545,95 @@
     }
     .btn--full { width: 100%; margin-top: 0.2rem; padding: 9px 20px; font-size: 0.76rem; letter-spacing: 0.15em; }
 
-    .panel--count .script,
-    .panel--last .verse {
+    /* Countdown Panel (Landscape ornate temple frame) */
+    .panel--count {
+      position: relative; width: 100%; max-width: 660px; margin: 0 auto;
+      overflow: hidden; background-color: #F7EBD2;
+    }
+    .panel--count .panel__img {
+      display: block; width: 100%; height: auto; min-height: 0; object-fit: contain;
+    }
+    .panel--count .panel__inner {
+      position: absolute; top: 16%; left: 0; right: 0; margin-inline: auto;
+      width: min(20rem, 85%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; z-index: 4;
+    }
+    .panel--count .script {
+      font-family: var(--font-script);
+      font-size: clamp(1.4rem, 4.4vw, 2rem);
+      margin-bottom: 0.35rem; line-height: 1.1;
       color: var(--maroon-royal);
-      text-shadow: 0 1px 2px rgba(255,255,255,0.7), 0 0 1px rgba(212,175,55,0.5);
+      text-shadow: 0 1px 2px rgba(255,255,255,0.8), 0 0 1px rgba(212,175,55,0.5);
     }
-    .panel--last .footer__names {
-      color: #380808;
-      font-family: var(--font-display);
-      font-size: 1.75rem;
-      letter-spacing: 0.08em;
-      text-shadow: 0 1px 3px rgba(255,255,255,0.8), 0 0 1px rgba(212,175,55,0.5);
-      margin: 0.6rem 0;
-    }
-    .panel--last .footer__top a {
-      color: var(--maroon-royal);
-      font-weight: 700;
-      border-bottom: 2px solid var(--maroon-royal);
-      text-decoration: none;
-      transition: 0.25s color;
-    }
-    .panel--last .footer__top a:hover {
-      color: var(--gold-dark);
-      border-color: var(--gold-dark);
-    }
-
-    /* Countdown */
     .count {
-      list-style: none; display: flex; justify-content: center; gap: 1.25rem; margin-top: 1.25rem;
-      background: linear-gradient(165deg, rgba(42, 6, 6, 0.94) 0%, rgba(20, 2, 2, 0.98) 100%);
-      padding: 1.4rem 2.2rem; border-radius: 20px;
-      border: 1.5px solid rgba(212,175,55,0.65);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 25px 55px rgba(0,0,0,0.85), 0 0 25px rgba(212,175,55,0.25);
+      list-style: none; display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0.4rem; margin: 0 auto; padding: 0.5rem 0.85rem; border-radius: 14px;
+      background: linear-gradient(165deg, rgba(45, 6, 6, 0.94) 0%, rgba(20, 2, 2, 0.98) 100%);
+      border: 1.5px solid rgba(212, 175, 55, 0.75);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.45), 0 0 15px rgba(212,175,55,0.25);
+      max-width: 310px; width: 100%;
     }
-    .count li { display: flex; flex-direction: column; align-items: center; min-width: 58px; }
+    .count li { display: flex; flex-direction: column; align-items: center; min-width: 0; }
     .count b {
-      font-family: var(--font-display); font-size: clamp(1.9rem, 5.2vw, 2.7rem);
-      color: var(--gold-light); text-shadow: 0 2px 10px rgba(0,0,0,0.8), 0 0 15px rgba(212,175,55,0.4);
+      font-family: var(--font-display); font-size: clamp(1.2rem, 3.8vw, 1.6rem);
+      line-height: 1.1; color: var(--gold-light);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.8);
     }
     .count span {
-      font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.22em; color: var(--gold-primary); margin-top: 2px;
+      font-family: var(--font-sans); font-size: 0.6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold-primary); margin-top: 1px;
     }
 
-    /* Footer */
-    .verse { font-size: 1.4rem; line-height: 1.6; margin-bottom: 1.2rem; font-weight: 600; }
-    .footer__top { margin-top: 1.5rem; font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.25em; }
+    /* Footer / Last Panel (Ivory floral carved relief) */
+    .panel--last {
+      position: relative; width: 100%; max-width: 660px; margin: 0 auto;
+      overflow: hidden; background-color: #F2E4C9;
+    }
+    .panel--last .panel__img {
+      display: block; width: 100%; height: auto; min-height: 0; object-fit: contain;
+    }
+    .panel--last .panel__inner {
+      position: absolute; top: 12%; left: 0; right: 0; margin-inline: auto;
+      width: min(20rem, 82%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; z-index: 4;
+    }
+    .panel--last .verse {
+      font-family: var(--font-serif);
+      font-size: clamp(1.02rem, 3.2vw, 1.25rem);
+      line-height: 1.45; color: #4A0E0E;
+      margin-bottom: 0.55rem; font-weight: 600;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+    }
+    .panel--last .verse em {
+      display: block; font-size: 0.85rem; font-style: italic; font-weight: 400;
+      color: #6B4A1C; margin-top: 3px;
+    }
+    .panel--last .footer__mark {
+      color: #B38728; font-size: 0.85rem; margin: 0.3rem 0;
+    }
+    .panel--last .footer__names {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 3.6vw, 1.45rem);
+      font-weight: 700; color: #380808;
+      letter-spacing: 0.06em; margin: 0.35rem 0 0.25rem;
+      text-shadow: 0 1px 3px rgba(255,255,255,0.8);
+    }
+    .panel--last .footer__line {
+      font-size: 0.8rem; color: #6B4A1C; font-style: italic; margin-bottom: 0.85rem;
+    }
+    .panel--last .footer__top a {
+      display: inline-block; font-family: var(--font-sans);
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.2em; color: #4A0E0E;
+      border-bottom: 1.5px solid #4A0E0E; text-decoration: none; padding-bottom: 2px;
+      transition: 0.25s color, 0.25s border-color;
+    }
+    .panel--last .footer__top a:hover {
+      color: var(--gold-dark); border-color: var(--gold-dark);
+    }
 
     /* Music Toggle */
     .music-toggle {
@@ -843,7 +898,9 @@
          alt="Blessing footer" loading="lazy" />
     <div class="panel__inner reveal">
       <p class="verse">“మనసులు కలిసిన జీవనమే జీవితం”<br /><em>A life of one mind is a life indeed.</em></p>
+      <p class="footer__mark" aria-hidden="true">❖</p>
       <p class="footer__names">Venkata Chandra Sekhar &amp; Varsha</p>
+      <p class="footer__line">With gratitude to our elders, and to you for coming.</p>
       <p class="footer__top"><a href="#top">Back to top</a></p>
     </div>
   </footer>
@@ -1350,17 +1407,19 @@
 
     // Countdown
     const target = new Date("2026-08-23T05:45:00+05:30").getTime();
-    setInterval(() => {
+    function updateCountdown() {
       const d = Math.max(0, target - Date.now());
       const days = document.querySelector('[data-unit="days"]');
       const hours = document.querySelector('[data-unit="hours"]');
       const mins = document.querySelector('[data-unit="minutes"]');
       const secs = document.querySelector('[data-unit="seconds"]');
       if (days) days.textContent = Math.floor(d / 86400000);
-      if (hours) hours.textContent = Math.floor((d / 3600000) % 24);
-      if (mins) mins.textContent = Math.floor((d / 60000) % 60);
-      if (secs) secs.textContent = Math.floor((d / 1000) % 60);
-    }, 1000);
+      if (hours) hours.textContent = String(Math.floor((d / 3600000) % 24)).padStart(2, '0');
+      if (mins) mins.textContent = String(Math.floor((d / 60000) % 60)).padStart(2, '0');
+      if (secs) secs.textContent = String(Math.floor((d / 1000) % 60)).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
     // Music Toggle
     const musicToggle = document.getElementById('musicToggle');
